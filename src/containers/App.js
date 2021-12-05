@@ -32,23 +32,19 @@ function App() {
 
   console.log(robots, searchField);
 
-  if (!robots.length) {
-    return (
-      <div className="tc">
-        <h1 className="f1">Loading</h1>
-      </div>
-    );
-  } else {
-    return (
-      <div className="tc">
-        <h1 className="f1">Robo Friends</h1>
-        <SearchBox searchChange={onSearchChange} />
-        <ErrorBoundary>
-          <CardList robots={filteredRobots} />
-        </ErrorBoundary>
-      </div>
-    );
-  }
+  return !robots.length ? (
+    <div className="tc">
+      <h1 className="f1">Loading</h1>
+    </div>
+  ) : (
+    <div className="tc">
+      <h1 className="f1">Robo Friends</h1>
+      <SearchBox searchChange={onSearchChange} />
+      <ErrorBoundary>
+        <CardList robots={filteredRobots} />
+      </ErrorBoundary>
+    </div>
+  );
 }
 
 export default App;
