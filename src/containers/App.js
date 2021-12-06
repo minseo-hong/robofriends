@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import ErrorBoundary from "./ErrorBoundary";
@@ -21,6 +21,12 @@ function App() {
   //     .then((response) => response.json())
   //     .then((users) => this.setState({ robots: users }));
   // }
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) => setRobots(users));
+  }, []);
 
   const onSearchChange = (event) => {
     setSearchField(event.target.value);
