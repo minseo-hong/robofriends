@@ -7,12 +7,17 @@ import "./App.css";
 function App() {
   const [robots, setRobots] = useState([]);
   const [searchField, setSearchField] = useState("");
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) => setRobots(users));
   }, []);
+
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
 
   const onSearchChange = (event) => {
     setSearchField(event.target.value);
@@ -22,8 +27,6 @@ function App() {
     return robot.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
-  console.log(robots, searchField);
-
   return !robots.length ? (
     <div className="tc">
       <h1 className="f1">Loading</h1>
@@ -31,6 +34,13 @@ function App() {
   ) : (
     <div className="tc">
       <h1 className="f1">Robo Friends</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        Click Me!!
+      </button>
       <SearchBox searchChange={onSearchChange} />
       <ErrorBoundary>
         <CardList robots={filteredRobots} />
