@@ -5,22 +5,8 @@ import ErrorBoundary from "./ErrorBoundary";
 import "./App.css";
 
 function App() {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     robots: [],
-  //     searchField: "",
-  //   };
-  // }
-
   const [robots, setRobots] = useState([]);
   const [searchField, setSearchField] = useState("");
-
-  // componentDidMount() {
-  //   fetch("https://jsonplaceholder.typicode.com/users")
-  //     .then((response) => response.json())
-  //     .then((users) => this.setState({ robots: users }));
-  // }
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
